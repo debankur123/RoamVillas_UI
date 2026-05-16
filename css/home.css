@@ -1,0 +1,137 @@
+/* Carousel Styles */
+.carousel-slide {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.carousel-caption-custom {
+  text-align: center;
+  color: white;
+  z-index: 10;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.carousel-fade .carousel-item {
+  transition: opacity 1s ease-in-out;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 20px;
+}
+
+/* Divider Styles */
+.divider-custom {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #667eea, transparent);
+}
+
+.divider-icon {
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  color: #667eea;
+}
+
+/* Card Hover Effects */
+.hover-shadow {
+  transition: all 0.3s ease-in-out;
+  border-radius: 15px;
+}
+
+.hover-shadow:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2) !important;
+}
+
+.villa-image {
+  transition: transform 0.5s ease-in-out;
+}
+
+.card:hover .villa-image {
+  transform: scale(1.1);
+}
+
+.card {
+  border: none;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.transition {
+  transition: all 0.3s ease;
+}
+
+/* Button Hover Effect */
+.btn-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-hover:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Stats Card */
+.stats-card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 15px;
+}
+
+.stat-item {
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Background Gradient */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Smooth Scroll */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-slide {
+    height: 400px;
+  }
+
+  .carousel-caption-custom h1 {
+    font-size: 2rem;
+  }
+
+  .carousel-caption-custom p {
+    font-size: 1rem;
+  }
+}
