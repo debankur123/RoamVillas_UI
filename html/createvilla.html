@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Villa</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/villa.css" />
+  </head>
+  <body>
+    <div id="navbarContainer"></div>
+
+    <!-- Full-screen Loader -->
+    <div id="pageLoader" class="d-none">
+      <div class="loader-box">
+        <div class="spinner-border mb-3" role="status"></div>
+        <p class="fw-semibold text-secondary mb-0" id="loaderText">
+          Loading, please wait...
+        </p>
+      </div>
+    </div>
+
+    <!-- Universal Modal -->
+    <div class="modal fade" id="villaModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+          <div class="modal-header border-0" id="villaModalHeader">
+            <h5 class="modal-title fw-semibold"></h5>
+            <button
+              type="button"
+              id="villaModalClose"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body px-4 py-4" id="villaModalBody"></div>
+          <div class="modal-footer border-0 pt-0">
+            <button
+              type="button"
+              id="villaModalAction"
+              class="btn px-4"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="container my-5">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#"><i class="bi bi-house-door me-1"></i>Dashboard</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="../html/villalist.html">Villas</a>
+          </li>
+          <!-- ✅ Dynamic breadcrumb label -->
+          <li
+            class="breadcrumb-item active"
+            id="breadcrumbCurrent"
+            aria-current="page"
+          >
+            Create Villa
+          </li>
+        </ol>
+      </nav>
+
+      <!-- ✅ Dynamic page heading -->
+      <div class="d-flex align-items-center gap-2 mb-4">
+        <i class="bi bi-building fs-3 text-success"></i>
+        <h2 class="page-title mb-0 text-success" id="pageHeading">
+          Create New Villa
+        </h2>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <div class="card">
+            <div
+              class="card-header d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-house-heart text-white fs-5"></i>
+                <span
+                  class="fw-semibold text-white fs-5"
+                  style="font-family: &quot;Playfair Display&quot;, serif"
+                  >Villa Details</span
+                >
+              </div>
+              <!-- ✅ Dynamic badge (New Entry / Edit Mode) -->
+              <span
+                id="headerBadge"
+                class="badge bg-white text-success fw-semibold"
+              >
+                <i class="bi bi-pencil-square me-1"></i>New Entry
+              </span>
+            </div>
+
+            <div class="card-body p-4">
+              <form id="villaForm">
+                <!-- Hidden Id: 0 = create, >0 = update -->
+                <input type="hidden" id="villaId" value="0" />
+
+                <!-- Basic Info -->
+                <p
+                  class="text-muted small text-uppercase fw-semibold mb-3 mt-1"
+                >
+                  <i class="bi bi-info-circle field-icon me-1"></i>Basic
+                  Information
+                </p>
+
+                <div class="mb-3">
+                  <label class="form-label fw-medium"
+                    >Villa Name <span class="text-danger">*</span></label
+                  >
+                  <div class="input-group">
+                    <span class="input-group-text"
+                      ><i class="bi bi-houses field-icon"></i
+                    ></span>
+                    <input
+                      id="villaName"
+                      class="form-control"
+                      placeholder="e.g. Ocean Breeze Villa"
+                    />
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label fw-medium">Description</label>
+                  <textarea
+                    id="villaDetails"
+                    class="form-control"
+                    rows="4"
+                    placeholder="Describe the villa — its surroundings, amenities, unique features..."
+                  ></textarea>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Pricing & Capacity -->
+                <p class="text-muted small text-uppercase fw-semibold mb-3">
+                  <i class="bi bi-cash-coin field-icon me-1"></i>Pricing &
+                  Capacity
+                </p>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label fw-medium"
+                      >Nightly Rate <span class="text-danger">*</span></label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text">$</span>
+                      <input
+                        id="villaRate"
+                        type="number"
+                        step="0.01"
+                        class="form-control"
+                        placeholder="0.00"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label fw-medium">Max Occupancy</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="bi bi-people field-icon"></i
+                      ></span>
+                      <input
+                        id="villaOccupancy"
+                        type="number"
+                        class="form-control"
+                        placeholder="Number of guests"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label fw-medium">Square Feet</label>
+                  <div class="input-group">
+                    <span class="input-group-text"
+                      ><i class="bi bi-aspect-ratio field-icon"></i
+                    ></span>
+                    <input
+                      id="villaSqft"
+                      type="number"
+                      class="form-control"
+                      placeholder="Area in sqft"
+                    />
+                    <span class="input-group-text text-muted small">sqft</span>
+                  </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Media -->
+                <p class="text-muted small text-uppercase fw-semibold mb-3">
+                  <i class="bi bi-image field-icon me-1"></i>Media
+                </p>
+
+                <div class="mb-3">
+                  <label class="form-label fw-medium">Image URL</label>
+                  <div class="input-group">
+                    <span class="input-group-text"
+                      ><i class="bi bi-link-45deg field-icon"></i
+                    ></span>
+                    <input
+                      id="villaImageURL"
+                      class="form-control"
+                      placeholder="https://example.com/villa.jpg"
+                      oninput="previewImage(this.value)"
+                    />
+                  </div>
+                </div>
+
+                <div class="image-preview-box mb-4" id="previewBox">
+                  <div class="text-center" id="previewPlaceholder">
+                    <i class="bi bi-card-image fs-2 d-block mb-1"></i>
+                    <small>Image preview will appear here</small>
+                  </div>
+                  <img id="previewImg" src="" alt="Preview" class="d-none" />
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Action Buttons -->
+                <div class="d-flex gap-2 justify-content-end pt-1">
+                  <a
+                    href="../html/villaindex.html"
+                    class="btn btn-outline-secondary px-4"
+                  >
+                    <i class="bi bi-arrow-left me-1"></i>Back to List
+                  </a>
+                  <!-- ✅ id="submitBtn" is swapped to Update by JS in edit mode -->
+                  <button
+                    id="submitBtn"
+                    type="submit"
+                    class="btn btn-success px-4"
+                  >
+                    <i class="bi bi-check-circle me-1"></i>Create Villa
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/villa.js"></script>
+    <script src="../js/layout.js"></script>
+  </body>
+</html>
