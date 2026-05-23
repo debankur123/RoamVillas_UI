@@ -2,7 +2,9 @@ LoadVillas();
 async function LoadVillas(id = null) {
     try {
 
-        let URL = "https://localhost:7070/api/Villa/GetVillas";
+        //let URL = "https://localhost:7070/api/Villa/GetVillas";
+        let URL = "http://localhost:5199/api/Villa/GetVillas";
+
         if (id && id !== 0) {
             URL = URL + "?id=" + id;
         }

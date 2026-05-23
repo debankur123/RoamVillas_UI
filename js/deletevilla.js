@@ -25,8 +25,12 @@ async function confirmDelete() {
   confirmBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Deleting...`;
 
   try {
+    // const response = await fetch(
+    //   `https://localhost:7070/api/Villa/DeleteVilla?id=${pendingDeleteId}`,
+    //   { method: "POST" }
+    // );
     const response = await fetch(
-      `https://localhost:7070/api/Villa/DeleteVilla?id=${pendingDeleteId}`,
+      `http://localhost:5199/api/Villa/DeleteVilla?id=${pendingDeleteId}`,
       { method: "POST" }
     );
 

@@ -1,6 +1,6 @@
 const VillaApi = {
-  baseUrl: "https://localhost:7070/api/Villa",
-
+  //baseUrl: "https://localhost:7070/api/Villa",
+  baseUrl: "http://localhost:5199/api/Villa",
   async insertUpdateVilla(villaDto) {
     const response = await fetch(`${this.baseUrl}/InsertUpdateVilla`, {
       method: "POST",
